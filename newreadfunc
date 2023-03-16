@@ -1,0 +1,21 @@
+$(document).ready(function(){
+    $.ajax({
+        url: "http://localhost/coe1401/final1401/API/coe1401/read.php"
+    }).then(function(data) {
+        console.log(data); // log the server response to the console
+        $.each(data.records, function(d, results) {
+            let id = d+1;
+            $("#data tbody").append(
+                "<tr>"
+                    +"<td>"+results.id+"</td>"
+                    +"<td>"+results.name+"</td>"
+                    +"<td>"+results.phone+"</td>"
+                    +"<td>"+results.email+"</td>"
+                    +"<td>"+results.country+"</td>"
+                    +"<td>"+results.currency+"</td>"
+                    +"<td><a href='edit.html?id="+results.id+"' id='edit'  class='btn btn-primary' >EDIT</a> <button type='button' class='btn btn-danger' onclick='del("+results.id+")' >DEL</button></td>"
+                +"</tr>"
+            );
+        });
+    });
+});
